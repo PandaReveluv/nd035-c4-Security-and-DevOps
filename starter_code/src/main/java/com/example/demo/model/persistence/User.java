@@ -2,7 +2,9 @@ package com.example.demo.model.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,6 +12,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
