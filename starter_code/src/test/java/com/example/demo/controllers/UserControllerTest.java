@@ -32,9 +32,6 @@ public class UserControllerTest {
     private UserRepository userRepository;
 
     @Mock
-    private CartRepository cartRepository;
-
-    @Mock
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Test
