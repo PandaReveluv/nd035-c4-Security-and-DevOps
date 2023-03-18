@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "bcab77c8-e925-4077-a81d-ffc8ca53301b",
+		"name": "Udacity C4 Java Dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin123\",\r\n    \"confirmPassword\": \"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/api/user/create",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"api",
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/login",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/api/item",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"api",
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get item by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/api/item/1",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"api",
+						"item",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get item by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/api/item/name/Round%20Widget",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"api",
+						"item",
+						"name",
+						"Round%20Widget"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/api/user/id/1",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"api",
+						"user",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by username",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/api/user/admin",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"api",
+						"user",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Item from Cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"itemId\": 1,\r\n    \"quantity\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/api/cart/removeFromCart",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"api",
+						"cart",
+						"removeFromCart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add item to cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"itemId\": 1,\r\n    \"quantity\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/api/cart/addToCart",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"api",
+						"cart",
+						"addToCart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/api/order/submit/admin",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"api",
+						"order",
+						"submit",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order History",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}:8888/udacity/api/order/history/admin",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "8888",
+					"path": [
+						"udacity",
+						"api",
+						"order",
+						"history",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY4MDAxODA2M30.mQWa2_ZvzLWvmbmVlZgunVSly7pxqxLnAWfGC-SlZqmFCQAM1mAON_X8PHyKJw4iARIs-zhoGhu2hcZg44_gNw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "hostname",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
