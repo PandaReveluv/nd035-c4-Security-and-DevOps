@@ -32,6 +32,9 @@ public class UserControllerTest {
     private UserRepository userRepository;
 
     @Mock
+    private CartRepository cartRepository;
+
+    @Mock
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Test
@@ -59,6 +62,13 @@ public class UserControllerTest {
     }
 
     @Test
+    public void testCreateUserWithoutUsername() {
+
+        ResponseEntity<User> result = userController.createUser(new CreateUserRequest());
+        assertEquals(HttpStatus.BAD_REQUEST, result.getStatusCode());
+    }
+
+    @Test
     public void testCreateUserWithPasswordLessThan7Character() {
 
         String passwordLessThan7Character = "123";
@@ -79,7 +89,11 @@ public class UserControllerTest {
     public void testCreateUser() {
 
         String password = "somePassword";
-        ResponseEntity<User> result = userController.createUser(new CreateUserRequest("username", password, password));
+        CreateUserRequest createUserRequest = new CreateUserRequest();
+        createUserRequest.setUsername("username");
+        createUserRequest.setPassword(password);
+        createUserRequest.setConfirmPassword(password);
+        ResponseEntity<User> result = userController.createUser(createUserRequest);
         when(bCryptPasswordEncoder.encode(any())).thenReturn("encodedPassword");
         assertEquals(HttpStatus.OK, result.getStatusCode());
     }

@@ -51,10 +51,11 @@ public class UserOrder {
 
     public static UserOrder createFromCart(Cart cart) {
         UserOrder order = new UserOrder();
-        order.setItems(new ArrayList<>(cart.getItems()));
-        order.setTotal(cart.getTotal());
-        order.setUser(cart.getUser());
+        if (cart != null) {
+            order.setItems(new ArrayList<>(cart.getItems()));
+            order.setTotal(cart.getTotal());
+            order.setUser(cart.getUser());
+        }
         return order;
     }
-
 }

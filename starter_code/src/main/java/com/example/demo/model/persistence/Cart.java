@@ -51,21 +51,25 @@ public class Cart {
         if (items == null) {
             items = new ArrayList<>();
         }
-        items.add(item);
         if (total == null) {
             total = new BigDecimal(0);
         }
-        total = total.add(item.getPrice());
+        if (item != null) {
+            items.add(item);
+            total = total.add(item.getPrice());
+        }
     }
 
     public void removeItem(Item item) {
         if (items == null) {
             items = new ArrayList<>();
         }
-        items.remove(item);
         if (total == null) {
             total = new BigDecimal(0);
         }
-        total = total.subtract(item.getPrice());
+        if (item != null) {
+            items.remove(item);
+            total = total.subtract(item.getPrice());
+        }
     }
 }

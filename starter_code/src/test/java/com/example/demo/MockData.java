@@ -4,7 +4,6 @@ import com.example.demo.model.persistence.Cart;
 import com.example.demo.model.persistence.Item;
 import com.example.demo.model.persistence.User;
 import com.example.demo.model.persistence.UserOrder;
-
 import java.math.BigDecimal;
 import java.util.Collections;
 
