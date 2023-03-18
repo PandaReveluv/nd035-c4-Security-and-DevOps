@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,33 +20,38 @@ import com.example.demo.model.persistence.repositories.UserRepository;
 
 @RestController
 @RequestMapping("/api/order")
+@Slf4j
 public class OrderController {
-	
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
-	private OrderRepository orderRepository;
-	
-	
-	@PostMapping("/submit/{username}")
-	public ResponseEntity<UserOrder> submit(@PathVariable String username) {
-		User user = userRepository.findByUsername(username);
-		if(user == null) {
-			return ResponseEntity.notFound().build();
-		}
-		UserOrder order = UserOrder.createFromCart(user.getCart());
-		orderRepository.save(order);
-		return ResponseEntity.ok(order);
-	}
-	
-	@GetMapping("/history/{username}")
-	public ResponseEntity<List<UserOrder>> getOrdersForUser(@PathVariable String username) {
-		User user = userRepository.findByUsername(username);
-		if(user == null) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(orderRepository.findByUser(user));
-	}
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @PostMapping("/submit/{username}")
+    public ResponseEntity<UserOrder> submit(@PathVariable String username) {
+
+        log.info("Start submitting order by username: {}", username);
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            log.warn("Not found username to submit order: {}", username);
+            return ResponseEntity.notFound().build();
+        }
+        UserOrder order = UserOrder.createFromCart(user.getCart());
+        orderRepository.save(order);
+        log.info("Submit order successfully: {}", order);
+        return ResponseEntity.ok(order);
+    }
+
+    @GetMapping("/history/{username}")
+    public ResponseEntity<List<UserOrder>> getOrdersForUser(@PathVariable String username) {
+
+        log.info("Start getting orders by username: {}", username);
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            log.warn("Not found username to get orders: {}", username);
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(orderRepository.findByUser(user));
+    }
 }
