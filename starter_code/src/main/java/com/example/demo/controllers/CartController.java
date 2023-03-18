@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import com.example.demo.model.requests.ModifyCartRequest;
 
 @RestController
 @RequestMapping("/api/cart")
+@Slf4j
 public class CartController {
 
     @Autowired
@@ -33,36 +35,44 @@ public class CartController {
     @PostMapping("/addToCart")
     public ResponseEntity<Cart> addTocart(@RequestBody ModifyCartRequest request) {
 
+        log.info("Start adding to cart request: {}", request);
         User user = userRepository.findByUsername(request.getUsername());
         if (user == null) {
+            log.warn("Not found username to add item to cart: {}", request.getUsername());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         Optional<Item> item = itemRepository.findById(request.getItemId());
         if (!item.isPresent()) {
+            log.warn("Not found item to add item to cart: {}", request.getItemId());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         Cart cart = user.getCart();
         IntStream.range(0, request.getQuantity())
                 .forEach(i -> cart.addItem(item.get()));
         cartRepository.save(cart);
+        log.info("Add to cart successfully: {}", cart);
         return ResponseEntity.ok(cart);
     }
 
     @PostMapping("/removeFromCart")
     public ResponseEntity<Cart> removeFromcart(@RequestBody ModifyCartRequest request) {
 
+        log.info("Start removing from cart request: {}", request);
         User user = userRepository.findByUsername(request.getUsername());
         if (user == null) {
+            log.warn("Not found username to remove item from cart: {}", request.getUsername());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         Optional<Item> item = itemRepository.findById(request.getItemId());
         if (!item.isPresent()) {
+            log.warn("Not found item to remove item from cart: {}", request.getItemId());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         Cart cart = user.getCart();
         IntStream.range(0, request.getQuantity())
                 .forEach(i -> cart.removeItem(item.get()));
         cartRepository.save(cart);
+        log.info("Remove from cart successfully: {}", cart);
         return ResponseEntity.ok(cart);
     }
 
